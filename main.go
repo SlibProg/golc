@@ -3,46 +3,32 @@ package main
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
+
+	"github.com/expr-lang/expr"
 )
 
 func calculator() {
-	number, err1 := strconv.Atoi(os.Args[1])
-	op := os.Args[2]
-	number2, err2 := strconv.Atoi(os.Args[3])
+	expression := strings.Join(os.Args[1:], " ")
+	result, err := expr.Eval(expression, nil)
 
-	if err1 != nil || err2 != nil {
+	if err != nil {
 		fmt.Println("Use only numbers.")
 		return
-	}
-
-	if op == "+" {
-		fmt.Println(number + number2)
-	} else if op == "-" {
-		fmt.Println(number - number2)
-	} else if strings.ToUpper(op) == "X" {
-		fmt.Println(number * number2)
-	} else if op == "/" {
-		if number == 0 {
-			fmt.Println("Don't even try")
-		} else if number2 == 0 {
-			fmt.Println("Don't even try")
-		} else {
-			fmt.Println(number / number2)
-		}
+	} else {
+		fmt.Printf("%v\n", result)
 	}
 }
 
 func main() {
 	if len(os.Args) < 4 {
-		fmt.Println("Use the calculator like this:")
-		fmt.Println("golc 1 + 1")
-		fmt.Println("")
+		fmt.Println("Use the calculator like this: golc \"1 + 1 * 2 - 4\"")
 		fmt.Println("+ = Addition")
 		fmt.Println("- = Subtraction")
 		fmt.Println("/ = Division")
-		fmt.Println("x = Multiplication")
+		fmt.Println("\\* = Multiplication")
+		fmt.Println("")
+		fmt.Println("Only use \"\" when the numerical expression has multiplication")
 		return
 	} else {
 		calculator()

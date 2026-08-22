@@ -7,13 +7,24 @@ And is also my first project in Go!
 
 ## Installation
 
+---
+
 ```
 go install github.com/SlibProg/golc@latest
 ```
 
 ## Usage
-It's now only simple equations, just 2 numbers and 1 operation (+ - / x)
+
+---
+
+For now, you can only use addition, subtraction, multiplication and division (+ - / \*)
 
 ```
-golc 6*4
+golc 6 \* 4 + 3 +3 +3
 ```
+
+## License
+
+---
+
+[MIT](LICENSE)
