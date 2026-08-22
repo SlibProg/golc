@@ -1,4 +1,4 @@
-module github.com/SlibProg/golc
+module github.com/SlibProg/golc/v2
 
 go 1.26.6
 
